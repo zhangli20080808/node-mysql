@@ -1,0 +1,32 @@
+class BaseModel {
+  constructor(data, message) {
+    if (typeof data === 'string') {
+      this.message = data;
+      message = null;
+      data = null;
+    }
+    if (data) {
+      this.data = data;
+      this.message = message;
+    }
+  }
+}
+
+class SuccessModel extends BaseModel {
+  constructor(data, message) {
+    super(data, message);
+    this.errNo = 0;
+  }
+}
+
+class ErrorModel extends BaseModel {
+  constructor(data, message) {
+    super(data, message);
+    this.errNo = -1;
+  }
+}
+
+module.exports = {
+  SuccessModel,
+  ErrorModel,
+};
